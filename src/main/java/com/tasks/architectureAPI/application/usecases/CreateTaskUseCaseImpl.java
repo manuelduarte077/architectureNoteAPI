@@ -4,6 +4,8 @@ import com.tasks.architectureAPI.domain.models.Task;
 import com.tasks.architectureAPI.domain.ports.in.ICreateTaskUseCase;
 import com.tasks.architectureAPI.domain.ports.out.ITaskRepositoryPort;
 
+import java.util.List;
+
 public class CreateTaskUseCaseImpl implements ICreateTaskUseCase {
 
     private final ITaskRepositoryPort taskRepositoryPort;
@@ -17,4 +19,5 @@ public class CreateTaskUseCaseImpl implements ICreateTaskUseCase {
     public Task createTask(Task task) {
         return taskRepositoryPort.save(task);
     }
+
 }
