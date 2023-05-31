@@ -16,12 +16,12 @@ public class RetrieveTaskUseCaseImpl implements IRetrieveTaskUseCase {
     }
 
     @Override
-    public Optional<Task> getTask(Long id) {
+    public Optional<Task> getTaskById(Long id) {
         return taskRepositoryPort.findById(id);
     }
 
     @Override
-    public List<Task> getAllTask() {
+    public List<Task> getAllTasks() {
         return taskRepositoryPort.findAll();
     }
 }

@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IRetrieveTaskUseCase {
-    Optional<Task> getTask(Long id);
+    Optional<Task> getTaskById(Long id);
 
-    List<Task> getAllTask();
+    List<Task> getAllTasks();
 
 }

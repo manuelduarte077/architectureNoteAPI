@@ -11,22 +11,37 @@ import java.util.Optional;
 public class TaskService implements ICreateTaskUseCase, IDeleteTaskUseCase, IGetAdditionalTaskInfoUseCase, IRetrieveTaskUseCase, IUpdateTaskUseCase {
 
     private final ICreateTaskUseCase createTaskUseCase;
-    private final IDeleteTaskUseCase deleteTaskUseCase;
-    private final IGetAdditionalTaskInfoUseCase getAdditionalTaskInfoUseCase;
     private final IRetrieveTaskUseCase retrieveTaskUseCase;
     private final IUpdateTaskUseCase updateTaskUseCase;
+    private final IDeleteTaskUseCase deleteTaskUseCase;
+    private final IGetAdditionalTaskInfoUseCase getAdditionalTaskInfoUseCase;
 
-    public TaskService(ICreateTaskUseCase createTaskUseCase, IDeleteTaskUseCase deleteTaskUseCase, IGetAdditionalTaskInfoUseCase getAdditionalTaskInfoUseCase, IRetrieveTaskUseCase retrieveTaskUseCase, IUpdateTaskUseCase updateTaskUseCase) {
+    public TaskService(ICreateTaskUseCase createTaskUseCase, IRetrieveTaskUseCase retrieveTaskUseCase, IUpdateTaskUseCase updateTaskUseCase, IDeleteTaskUseCase deleteTaskUseCase, IGetAdditionalTaskInfoUseCase getAdditionalTaskInfoUseCase) {
         this.createTaskUseCase = createTaskUseCase;
-        this.deleteTaskUseCase = deleteTaskUseCase;
-        this.getAdditionalTaskInfoUseCase = getAdditionalTaskInfoUseCase;
         this.retrieveTaskUseCase = retrieveTaskUseCase;
         this.updateTaskUseCase = updateTaskUseCase;
+        this.deleteTaskUseCase = deleteTaskUseCase;
+        this.getAdditionalTaskInfoUseCase = getAdditionalTaskInfoUseCase;
     }
 
     @Override
     public Task createTask(Task task) {
         return createTaskUseCase.createTask(task);
+    }
+
+    @Override
+    public Optional<Task> getTaskById(Long id) {
+        return retrieveTaskUseCase.getTaskById(id);
+    }
+
+    @Override
+    public List<Task> getAllTasks() {
+        return retrieveTaskUseCase.getAllTasks();
+    }
+
+    @Override
+    public Optional<Task> updateTask(Long id, Task updatedTask) {
+        return updateTaskUseCase.updateTask(id, updatedTask);
     }
 
     @Override
@@ -37,20 +52,5 @@ public class TaskService implements ICreateTaskUseCase, IDeleteTaskUseCase, IGet
     @Override
     public AdditionalTaskInfo getAdditionalTaskInfo(Long taskId) {
         return getAdditionalTaskInfoUseCase.getAdditionalTaskInfo(taskId);
-    }
-
-    @Override
-    public Optional<Task> getTask(Long id) {
-        return retrieveTaskUseCase.getTask(id);
-    }
-
-    @Override
-    public List<Task> getAllTask() {
-        return retrieveTaskUseCase.getAllTask();
-    }
-
-    @Override
-    public Optional<Task> updateTask(Long id, Task updatedTask) {
-        return updateTaskUseCase.updateTask(id, updatedTask);
     }
 }
